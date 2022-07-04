@@ -5,3 +5,9 @@ test:
 
 watch:
 	cargo watch -x run
+
+convert:
+	sudo convert out.ppm out.png
+
+generate:
+	cargo run && sudo convert out.ppm out.png
