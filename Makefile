@@ -4,4 +4,10 @@ test:
 	cargo test
 
 watch:
-	cargo watch -x run
+	cargo watch -x run -- make generate
+
+convert:
+	sudo convert out.ppm out.png
+
+generate:
+	cargo run && sudo convert out.ppm out.png
