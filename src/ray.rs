@@ -10,9 +10,9 @@ pub struct Ray {
 }
 
 impl Ray {
-    // pub fn at(self, t: f64) -> Vec3 {
-    //     self.origin + &self.direction * t
-    // }
+    pub fn at(self, t: f64) -> Vec3 {
+        self.origin + &self.direction * t
+    }
 
     pub fn get_color(&self) -> Vec3 {
         let unit_direction = self.direction.unit();

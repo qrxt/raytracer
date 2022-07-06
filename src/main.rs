@@ -8,29 +8,23 @@ pub mod ray;
 pub mod vec3;
 
 fn main() {
-    // let aspect_ratio = 16.0 / 9.0;
-    let image_width = 200;
-    // let image_height = (image_width as f64 / aspect_ratio) as i32;
-    let image_height = 100;
+    // Image properties
+    let aspect_ratio = 16.0 / 9.0;
+    let image_width = 400;
+    let image_height = (image_width as f64 / aspect_ratio) as i32;
 
-    // let viewport_height = 2.0;
-    // let viewport_width = aspect_ratio * viewport_height;
-    // let focal_length = 1.0;
+    // Camera
+    let viewport_height = 2.0;
+    let viewport_width = aspect_ratio * viewport_height;
+    let focal_length = 1.0;
 
-    // let coords_origin = vec3!(0, 0, 0);
-    // let horizontal = vec3!(viewport_width, 0, 0);
-    // let vertical = vec3!(0, viewport_height, 0);
-    // let lower_left_corner =
-    //     coords_origin.clone() - &horizontal / 2.0 - &vertical / 2.0 - vec3!(0, 0, focal_length);
-
-    // !
-    let lower_left_corner = vec3!(-2, -1, -1);
-    let horizontal = vec3!(4, 0, 0);
-    let vertical = vec3!(0, 2, 0);
     let coords_origin = vec3!(0, 0, 0);
-    // !
+    let horizontal = vec3!(viewport_width, 0, 0);
+    let vertical = vec3!(0, viewport_height, 0);
+    let lower_left_corner =
+        coords_origin.clone() - &horizontal / 2.0 - &vertical / 2.0 - vec3!(0, 0, focal_length);
 
-    // write file
+    // Render image
 
     let mut file = File::create("out.ppm").expect("Error encountered while creating file!");
 

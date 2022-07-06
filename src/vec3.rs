@@ -186,15 +186,6 @@ fn test_mul_vectors() {
     assert_eq!(vec1 * vec2, vec_expected);
 }
 
-// #[test]
-// fn test_scalar_div() {
-//     let vec = vec3!(8, 6, 7);
-
-//     let vec_expected = vec3!(4, 3, 3.5);
-
-//     assert_eq!(vec / 2, vec_expected);
-// }
-
 #[test]
 fn test_scalar_div() {
     let vec = vec3!(1.0, 2.0, 3.0);
