@@ -81,7 +81,19 @@ impl<'a> ops::Add<Vec3> for &'a Vec3 {
     }
 }
 
-impl ops::Sub<Vec3> for Vec3 {
+impl<'a, 'b> ops::Sub<&'a Vec3> for &'b Vec3 {
+    type Output = Vec3;
+
+    fn sub(self, rhs: &Vec3) -> Self::Output {
+        Vec3 {
+            x: self.x - rhs.x,
+            y: self.y - rhs.y,
+            z: self.z - rhs.z,
+        }
+    }
+}
+
+impl ops::Sub for Vec3 {
     type Output = Vec3;
 
     fn sub(self, rhs: Vec3) -> Self::Output {
@@ -89,6 +101,18 @@ impl ops::Sub<Vec3> for Vec3 {
             x: self.x - rhs.x,
             y: self.y - rhs.y,
             z: self.z - rhs.z,
+        }
+    }
+}
+
+impl<'a> ops::Sub<f64> for &'a Vec3 {
+    type Output = Vec3;
+
+    fn sub(self, rhs: f64) -> Self::Output {
+        Vec3 {
+            x: self.x - rhs,
+            y: self.y - rhs,
+            z: self.z - rhs,
         }
     }
 }
@@ -142,7 +166,7 @@ impl<'a> ops::Div<f64> for &'a Vec3 {
     }
 }
 
-pub fn dot(vec1: Vec3, vec2: Vec3) -> f64 {
+pub fn dot<'a, 'b>(vec1: &'a Vec3, vec2: &'b Vec3) -> f64 {
     (vec1.x * vec2.x) + (vec1.y * vec2.y) + (vec1.z * vec2.z)
 }
 
@@ -209,7 +233,7 @@ fn test_dot() {
     let vec1 = vec3!(1.0, 2.0, 3.0);
     let vec2 = vec3!(3.0, 2.0, 1.0);
 
-    assert_eq!(dot(vec1, vec2), 10.0);
+    assert_eq!(dot(&vec1, &vec2), 10.0);
 }
 
 #[test]

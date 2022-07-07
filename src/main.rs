@@ -5,6 +5,7 @@ use vec3::Vec3;
 use crate::ray::Ray;
 
 pub mod ray;
+pub mod sphere;
 pub mod vec3;
 
 fn main() {
@@ -21,8 +22,11 @@ fn main() {
     let coords_origin = vec3!(0, 0, 0);
     let horizontal = vec3!(viewport_width, 0, 0);
     let vertical = vec3!(0, viewport_height, 0);
+
+    let horizontal_center = &horizontal / 2.0;
+    let vertical_center = &vertical / 2.0;
     let lower_left_corner =
-        coords_origin.clone() - &horizontal / 2.0 - &vertical / 2.0 - vec3!(0, 0, focal_length);
+        coords_origin.clone() - horizontal_center - vertical_center - vec3!(0, 0, focal_length);
 
     // Render image
 
